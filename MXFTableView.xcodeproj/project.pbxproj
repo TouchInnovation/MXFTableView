@@ -1,0 +1,287 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 46;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		447A67A71582248B00D8E358 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 447A67A61582248B00D8E358 /* UIKit.framework */; };
+		447A67A91582248B00D8E358 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 447A67A81582248B00D8E358 /* Foundation.framework */; };
+		447A67AB1582248B00D8E358 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 447A67AA1582248B00D8E358 /* CoreGraphics.framework */; };
+		447A67C31582264F00D8E358 /* MXFAppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 447A67C21582264F00D8E358 /* MXFAppDelegate.m */; };
+		447A67C71582266000D8E358 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 447A67C41582266000D8E358 /* main.m */; };
+		447A67CB1582266900D8E358 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 447A67C91582266900D8E358 /* InfoPlist.strings */; };
+		447A67CE1582267F00D8E358 /* MXFTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 447A67CD1582267F00D8E358 /* MXFTableViewController.m */; };
+		447A67DA15822F3C00D8E358 /* MXFTableView.m in Sources */ = {isa = PBXBuildFile; fileRef = 447A67D915822F3C00D8E358 /* MXFTableView.m */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXFileReference section */
+		447A67A21582248B00D8E358 /* MXFTableView.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = MXFTableView.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		447A67A61582248B00D8E358 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
+		447A67A81582248B00D8E358 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
+		447A67AA1582248B00D8E358 /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
+		447A67C11582264F00D8E358 /* MXFAppDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = MXFAppDelegate.h; path = MXFTableViewApp/MXFAppDelegate.h; sourceTree = "<group>"; };
+		447A67C21582264F00D8E358 /* MXFAppDelegate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = MXFAppDelegate.m; path = MXFTableViewApp/MXFAppDelegate.m; sourceTree = "<group>"; };
+		447A67C41582266000D8E358 /* main.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = main.m; path = MXFTableViewApp/main.m; sourceTree = SOURCE_ROOT; };
+		447A67C51582266000D8E358 /* MXFTableView-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = "MXFTableView-Info.plist"; path = "MXFTableViewApp/MXFTableView-Info.plist"; sourceTree = SOURCE_ROOT; };
+		447A67C61582266000D8E358 /* MXFTableView-Prefix.pch */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "MXFTableView-Prefix.pch"; path = "MXFTableViewApp/MXFTableView-Prefix.pch"; sourceTree = SOURCE_ROOT; };
+		447A67CA1582266900D8E358 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = MXFTableViewApp/en.lproj/InfoPlist.strings; sourceTree = SOURCE_ROOT; };
+		447A67CC1582267F00D8E358 /* MXFTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MXFTableViewController.h; sourceTree = "<group>"; };
+		447A67CD1582267F00D8E358 /* MXFTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MXFTableViewController.m; sourceTree = "<group>"; };
+		447A67D815822F3C00D8E358 /* MXFTableView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MXFTableView.h; sourceTree = "<group>"; };
+		447A67D915822F3C00D8E358 /* MXFTableView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MXFTableView.m; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		447A679F1582248B00D8E358 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				447A67A71582248B00D8E358 /* UIKit.framework in Frameworks */,
+				447A67A91582248B00D8E358 /* Foundation.framework in Frameworks */,
+				447A67AB1582248B00D8E358 /* CoreGraphics.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		447A67971582248B00D8E358 = {
+			isa = PBXGroup;
+			children = (
+				447A67AC1582248B00D8E358 /* MXFTableView */,
+				447A67BD158224C400D8E358 /* MXFTableViewApp */,
+				447A67A51582248B00D8E358 /* Frameworks */,
+				447A67A31582248B00D8E358 /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		447A67A31582248B00D8E358 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				447A67A21582248B00D8E358 /* MXFTableView.app */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		447A67A51582248B00D8E358 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				447A67A61582248B00D8E358 /* UIKit.framework */,
+				447A67A81582248B00D8E358 /* Foundation.framework */,
+				447A67AA1582248B00D8E358 /* CoreGraphics.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		447A67AC1582248B00D8E358 /* MXFTableView */ = {
+			isa = PBXGroup;
+			children = (
+				447A67CC1582267F00D8E358 /* MXFTableViewController.h */,
+				447A67CD1582267F00D8E358 /* MXFTableViewController.m */,
+				447A67D815822F3C00D8E358 /* MXFTableView.h */,
+				447A67D915822F3C00D8E358 /* MXFTableView.m */,
+			);
+			path = MXFTableView;
+			sourceTree = "<group>";
+		};
+		447A67AD1582248B00D8E358 /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				447A67C91582266900D8E358 /* InfoPlist.strings */,
+				447A67C41582266000D8E358 /* main.m */,
+				447A67C51582266000D8E358 /* MXFTableView-Info.plist */,
+				447A67C61582266000D8E358 /* MXFTableView-Prefix.pch */,
+			);
+			name = "Supporting Files";
+			path = MXFTableView;
+			sourceTree = "<group>";
+		};
+		447A67BD158224C400D8E358 /* MXFTableViewApp */ = {
+			isa = PBXGroup;
+			children = (
+				447A67C11582264F00D8E358 /* MXFAppDelegate.h */,
+				447A67C21582264F00D8E358 /* MXFAppDelegate.m */,
+				447A67AD1582248B00D8E358 /* Supporting Files */,
+			);
+			name = MXFTableViewApp;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		447A67A11582248B00D8E358 /* MXFTableView */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 447A67BA1582248C00D8E358 /* Build configuration list for PBXNativeTarget "MXFTableView" */;
+			buildPhases = (
+				447A679E1582248B00D8E358 /* Sources */,
+				447A679F1582248B00D8E358 /* Frameworks */,
+				447A67A01582248B00D8E358 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = MXFTableView;
+			productName = MXFTableView;
+			productReference = 447A67A21582248B00D8E358 /* MXFTableView.app */;
+			productType = "com.apple.product-type.application";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		447A67991582248B00D8E358 /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				CLASSPREFIX = MXF;
+				LastUpgradeCheck = 0430;
+				ORGANIZATIONNAME = "Touch Innovation Limited";
+			};
+			buildConfigurationList = 447A679C1582248B00D8E358 /* Build configuration list for PBXProject "MXFTableView" */;
+			compatibilityVersion = "Xcode 3.2";
+			developmentRegion = English;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+			);
+			mainGroup = 447A67971582248B00D8E358;
+			productRefGroup = 447A67A31582248B00D8E358 /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				447A67A11582248B00D8E358 /* MXFTableView */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		447A67A01582248B00D8E358 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				447A67CB1582266900D8E358 /* InfoPlist.strings in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		447A679E1582248B00D8E358 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				447A67C31582264F00D8E358 /* MXFAppDelegate.m in Sources */,
+				447A67C71582266000D8E358 /* main.m in Sources */,
+				447A67CE1582267F00D8E358 /* MXFTableViewController.m in Sources */,
+				447A67DA15822F3C00D8E358 /* MXFTableView.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXVariantGroup section */
+		447A67C91582266900D8E358 /* InfoPlist.strings */ = {
+			isa = PBXVariantGroup;
+			children = (
+				447A67CA1582266900D8E358 /* en */,
+			);
+			name = InfoPlist.strings;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
+
+/* Begin XCBuildConfiguration section */
+		447A67B81582248C00D8E358 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				ARCHS = "$(ARCHS_STANDARD_32_BIT)";
+				CLANG_ENABLE_OBJC_ARC = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_SYMBOLS_PRIVATE_EXTERN = NO;
+				GCC_VERSION = com.apple.compilers.llvm.clang.1_0;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 5.1;
+				SDKROOT = iphoneos;
+			};
+			name = Debug;
+		};
+		447A67B91582248C00D8E358 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				ARCHS = "$(ARCHS_STANDARD_32_BIT)";
+				CLANG_ENABLE_OBJC_ARC = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_VERSION = com.apple.compilers.llvm.clang.1_0;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 5.1;
+				OTHER_CFLAGS = "-DNS_BLOCK_ASSERTIONS=1";
+				SDKROOT = iphoneos;
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		447A67BB1582248C00D8E358 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "MXFTableViewApp/MXFTableView-Prefix.pch";
+				INFOPLIST_FILE = "MXFTableViewApp/MXFTableView-Info.plist";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				WRAPPER_EXTENSION = app;
+			};
+			name = Debug;
+		};
+		447A67BC1582248C00D8E358 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "MXFTableViewApp/MXFTableView-Prefix.pch";
+				INFOPLIST_FILE = "MXFTableViewApp/MXFTableView-Info.plist";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				WRAPPER_EXTENSION = app;
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		447A679C1582248B00D8E358 /* Build configuration list for PBXProject "MXFTableView" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				447A67B81582248C00D8E358 /* Debug */,
+				447A67B91582248C00D8E358 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		447A67BA1582248C00D8E358 /* Build configuration list for PBXNativeTarget "MXFTableView" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				447A67BB1582248C00D8E358 /* Debug */,
+				447A67BC1582248C00D8E358 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = 447A67991582248B00D8E358 /* Project object */;
+}
