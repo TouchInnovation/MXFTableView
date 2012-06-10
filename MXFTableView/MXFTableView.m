@@ -26,6 +26,7 @@
 @synthesize leftPortraitHeader = _leftPortraitHeader;
 @synthesize rightLandscapeHeader = _rightLandscapeHeader;
 @synthesize rightPortraitHeader = _rightPortraitHeader;
+@synthesize tableView = _tableView;
 
 @synthesize delegate = _delegate;
 
@@ -34,7 +35,6 @@
     self = [super initWithFrame:frame];
     if (self) {
         // Initialization code
-//        self.backgroundColor = [UIColor grayColor];
         _delegate = delegate;
         
         _leftLandscapeHeader = [delegate viewForLeftLandscapeHeader];
@@ -44,6 +44,7 @@
         
         // Align right headers according to the left header
         CGRect llhFrame = _leftLandscapeHeader.frame;
+        CGFloat llhHeight = llhFrame.size.height;
         CGFloat llhWidth = llhFrame.size.width;
         _rightLandscapeHeader.frame = CGRectMake(llhWidth,
                                                  llhFrame.origin.y,
@@ -57,10 +58,15 @@
                                                  320.0 - llhWidth,
                                                  lphFrame.size.height);
         
+        // Assuming view must always init in portrait mode
+        _tableView = [[UITableView alloc] initWithFrame:CGRectMake(0, llhHeight, 320.0, 480.0 - llhHeight)];
+        _tableView.autoresizingMask = UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleHeight;
+        
         [self addSubview:_leftLandscapeHeader];
         [self addSubview:_leftPortraitHeader];
         [self addSubview:_rightLandscapeHeader];
         [self addSubview:_rightPortraitHeader];
+        [self addSubview:_tableView];
     }
     return self;
 }

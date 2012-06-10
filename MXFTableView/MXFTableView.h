@@ -35,6 +35,7 @@
 @property (strong, nonatomic) UIView *leftPortraitHeader;
 @property (strong, nonatomic) UIView *rightLandscapeHeader;
 @property (strong, nonatomic) UIView *rightPortraitHeader;
+@property (strong, nonatomic) UITableView *tableView;
 
 @property (assign, nonatomic) id<MXFTableViewDelegate> delegate;
 
