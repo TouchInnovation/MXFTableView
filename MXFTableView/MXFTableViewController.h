@@ -20,8 +20,9 @@
 
 #import <UIKit/UIKit.h>
 #import "MXFTableView.h"
+#import "MXFTableViewCell.h"
 
-@interface MXFTableViewController : UIViewController<MXFTableViewDelegate>
+@interface MXFTableViewController : UIViewController<MXFTableViewDelegate, MXFTableViewCellDelegate>
 
 @property (strong, nonatomic) MXFTableView *mxfTableView;
 

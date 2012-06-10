@@ -29,14 +29,6 @@
 -(UIView*) viewForRightLandscapeHeader;
 -(UIView*) viewForRightPortraitHeader;
 
-- (UIView *)tableView:(UITableView *)tableView viewForLeftCellForRowAtIndexPath:(NSIndexPath *)indexPath;
-- (UIView *)tableView:(UITableView *)tableView viewForRightLandscapeCellForRowAtIndexPath:(NSIndexPath *)indexPath;
-- (UIView *)tableView:(UITableView *)tableView viewForRightPortraitCellForRowAtIndexPath:(NSIndexPath *)indexPath;
-
-@optional
-
-- (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView;              // Default is 1 if not implemented
-
 @end
 
 @interface MXFTableView : UIView

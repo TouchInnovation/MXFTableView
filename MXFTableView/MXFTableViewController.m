@@ -19,7 +19,8 @@
 //
 
 #import "MXFTableViewController.h"
-#import "MXFTableViewCell.h"
+
+#define kRowHeight 40.0
 
 @interface MXFTableViewController ()
 
@@ -58,20 +59,14 @@
 # pragma mark - MXFTableViewDelegate methods
 
 -(UIView*) viewForLeftLandscapeHeader {
-    UIView *view = [[UIView alloc] initWithFrame:CGRectMake(0, 0, 20, 20)];
+    UIView *view = [[UIView alloc] initWithFrame:CGRectMake(0.0, 0.0, 20.0, 20.0)];
     view.backgroundColor = [UIColor blueColor];
-    UILabel *label = [[UILabel alloc] init];
-    label.text = @"LL Header";
-    [view addSubview:label];
     return view;
 }
 
 -(UIView*) viewForLeftPortraitHeader {
-    UIView *view = [[UIView alloc] initWithFrame:CGRectMake(0, 0, 20, 20)];
+    UIView *view = [[UIView alloc] initWithFrame:CGRectMake(0.0, 0.0, 20.0, 20.0)];
     view.backgroundColor = [UIColor greenColor];
-    UILabel *label = [[UILabel alloc] init];
-    label.text = @"LP Header";
-    [view addSubview:label];
     return view;
 }
 
@@ -93,15 +88,17 @@
     return view;
 }
 
-- (UIView *)tableView:(UITableView *)tableView viewForLeftCellForRowAtIndexPath:(NSIndexPath *)indexPath {
+- (UIView *)viewForLeftCellForRowAtIndexPath:(NSIndexPath *)indexPath {
+    UIView *view = [[UIView alloc] initWithFrame:CGRectMake(0.0, 0.0, 20.0, kRowHeight)];
+    view.backgroundColor = [UIColor magentaColor];
+    return view;
+}
+
+- (UIView *)viewForRightLandscapeCellForRowAtIndexPath:(NSIndexPath *)indexPath {
     return nil;
 }
 
-- (UIView *)tableView:(UITableView *)tableView viewForRightLandscapeCellForRowAtIndexPath:(NSIndexPath *)indexPath {
-    return nil;
-}
-
-- (UIView *)tableView:(UITableView *)tableView viewForRightPortraitCellForRowAtIndexPath:(NSIndexPath *)indexPath {
+- (UIView *)viewForRightPortraitCellForRowAtIndexPath:(NSIndexPath *)indexPath {
     return nil;    
 }
 
@@ -117,12 +114,14 @@
     NSLog(@"cellForRowAtIndexPath");
     static NSString *CellIdentifier = @"MXFTableViewCell";
     
-    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
+    MXFTableViewCell *cell = (MXFTableViewCell*) [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
     
     if(cell == nil) {
         cell = [[MXFTableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:CellIdentifier];
     }
-    cell.textLabel.text = [NSString stringWithFormat:@"Row: %d", indexPath.row];
+//    cell.textLabel.text = [NSString stringWithFormat:@"Row: %d", indexPath.row];
+    UIDeviceOrientation orientation = [[UIDevice currentDevice] orientation];
+    [cell configureWithDelegate:self IndexPath:indexPath orientation:orientation];
     
     return cell;
 }
@@ -130,9 +129,9 @@
 
 # pragma mark - UITableViewDelegate Methods:
 
-//- (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
-//    return 10.0;
-//}
+- (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
+    return kRowHeight;
+}
 
 
 # pragma mark - Orientation related methods

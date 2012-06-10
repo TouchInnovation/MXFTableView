@@ -8,10 +8,24 @@
 
 #import <UIKit/UIKit.h>
 
+@protocol MXFTableViewCellDelegate<NSObject>
+
+@required
+
+- (UIView *)viewForLeftCellForRowAtIndexPath:(NSIndexPath *)indexPath;
+- (UIView *)viewForRightLandscapeCellForRowAtIndexPath:(NSIndexPath *)indexPath;
+- (UIView *)viewForRightPortraitCellForRowAtIndexPath:(NSIndexPath *)indexPath;
+
+@end
+
+
 @interface MXFTableViewCell : UITableViewCell
 
 @property (strong, nonatomic) UIView *leftContent;
+@property (strong, nonatomic) UIScrollView *rightScrollView;
 @property (strong, nonatomic) UIView *rightLandscapeContent;
 @property (strong, nonatomic) UIView *rightPortraitContent;
+
+-(void) configureWithDelegate:(id<MXFTableViewCellDelegate>) delegate IndexPath:(NSIndexPath *) indexPath orientation:(UIDeviceOrientation) orientation;
 
 @end
