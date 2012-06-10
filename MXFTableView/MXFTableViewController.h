@@ -22,7 +22,7 @@
 #import "MXFTableView.h"
 #import "MXFTableViewCell.h"
 
-@interface MXFTableViewController : UIViewController<MXFTableViewDelegate, MXFTableViewCellDelegate>
+@interface MXFTableViewController : UIViewController<MXFTableViewDelegate, MXFTableViewCellDelegate, UIScrollViewDelegate>
 
 @property (strong, nonatomic) MXFTableView *mxfTableView;
 

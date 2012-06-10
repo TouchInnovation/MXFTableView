@@ -21,6 +21,9 @@
     if (self) {
         // Initialization code
         _rightScrollView = [[UIScrollView alloc] init];
+        _rightScrollView.showsVerticalScrollIndicator = false;
+        _rightScrollView.showsHorizontalScrollIndicator = false;
+        _rightScrollView.bounces = false; // Bouncing is NOT supported!!
         _rightScrollView.autoresizingMask = UIViewAutoresizingFlexibleWidth;
         _rightScrollView.backgroundColor = [UIColor orangeColor];
         [self addSubview:_rightScrollView];
@@ -61,12 +64,21 @@
 }
 
 - (void)configureForOrientation:(UIDeviceOrientation)orientation {
+    
     if(UIDeviceOrientationIsLandscape(orientation)) {
         _rightLandscapeContent.hidden = false;
         _rightPortraitContent.hidden = true;
+        
+        _rightScrollView.contentSize = _rightLandscapeContent.frame.size;
+        
+        self.accessoryType = UITableViewCellAccessoryNone;
     } else {
         _rightLandscapeContent.hidden = true;
         _rightPortraitContent.hidden = false;
+        
+        _rightScrollView.contentSize = _rightPortraitContent.frame.size;
+        
+        self.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
     }
 }
 

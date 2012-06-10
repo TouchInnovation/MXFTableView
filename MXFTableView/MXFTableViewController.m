@@ -20,7 +20,8 @@
 
 #import "MXFTableViewController.h"
 
-#define kRowHeight 40.0
+#define kDemoRowCount 20
+#define kDemoRowHeight 40.0
 
 @interface MXFTableViewController ()
 
@@ -89,19 +90,21 @@
 }
 
 - (UIView *)viewForLeftCellForRowAtIndexPath:(NSIndexPath *)indexPath {
-    UIView *view = [[UIView alloc] initWithFrame:CGRectMake(0.0, 0.0, 20.0, kRowHeight)];
+    UIView *view = [[UIView alloc] initWithFrame:CGRectMake(0.0, 0.0, 20.0, kDemoRowHeight)];
     view.backgroundColor = [UIColor magentaColor];
     return view;
 }
 
 - (UIView *)viewForRightLandscapeCellForRowAtIndexPath:(NSIndexPath *)indexPath {
-    UIView *view = [[UIView alloc] initWithFrame:CGRectMake(0.0, 10.0, 20.0, kRowHeight-20.0)];
-    view.backgroundColor = [UIColor blackColor];
+    UIView *view = [[UIView alloc] initWithFrame:CGRectMake(0.0, 0.0, 800.0, kDemoRowHeight)];
+    UILabel *label = [[UILabel alloc] initWithFrame:CGRectMake(0.0, 0.0, 800.0, kDemoRowHeight)];
+    label.text = @"This is a very long long text This is a very long long text This is a very long long text This is a very long long text";
+    [view addSubview:label];
     return view;
 }
 
 - (UIView *)viewForRightPortraitCellForRowAtIndexPath:(NSIndexPath *)indexPath {
-    UIView *view = [[UIView alloc] initWithFrame:CGRectMake(0.0, 10.0, 20.0, kRowHeight-20.0)];
+    UIView *view = [[UIView alloc] initWithFrame:CGRectMake(0.0, 0.0, 20.0, kDemoRowHeight)];
     view.backgroundColor = [UIColor brownColor];
     return view;
 }
@@ -111,7 +114,7 @@
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
     // To be implemented by subclass
-    return 10;
+    return kDemoRowCount;
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
@@ -121,6 +124,7 @@
     
     if(cell == nil) {
         cell = [[MXFTableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:CellIdentifier];
+        cell.rightScrollView.delegate = self;
     }
 //    cell.textLabel.text = [NSString stringWithFormat:@"Row: %d", indexPath.row];
     UIDeviceOrientation orientation = [[UIDevice currentDevice] orientation];
@@ -133,7 +137,7 @@
 # pragma mark - UITableViewDelegate Methods:
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
-    return kRowHeight;
+    return kDemoRowHeight;
 }
 
 
@@ -164,12 +168,29 @@
 //- (void)didRotateFromInterfaceOrientation:(UIInterfaceOrientation)fromInterfaceOrientation {    
     // Configure table cell for the new orientation
     NSArray *visiblePaths = [_mxfTableView.tableView indexPathsForVisibleRows];
-    NSLog(@"Table View: %@", _mxfTableView.tableView);
-    NSLog(@"visiblePaths: %d", [visiblePaths count]);
     for (NSIndexPath *indexPath in visiblePaths)
     {
         MXFTableViewCell *cell = (MXFTableViewCell*) [_mxfTableView.tableView cellForRowAtIndexPath:indexPath];
         [cell configureForOrientation:[[UIDevice currentDevice] orientation]];
+    }
+}
+
+
+# pragma mark - UIScrollViewDelegate methods
+
+- (void)scrollViewDidScroll:(UIScrollView *)currentScrollView{
+
+    CGPoint offset = [currentScrollView contentOffset];
+
+    if(offset.y == 0) { // Lock vertical scrolling
+        NSArray *visiblePaths = [_mxfTableView.tableView indexPathsForVisibleRows];
+        for (NSIndexPath *indexPath in visiblePaths) {
+            MXFTableViewCell *cell = (MXFTableViewCell*) [_mxfTableView.tableView cellForRowAtIndexPath:indexPath];
+            UIScrollView *scrollView = cell.rightScrollView;
+            if(scrollView != currentScrollView) {
+                [scrollView setContentOffset:offset animated:false];
+            }
+        }
     }
 }
 
