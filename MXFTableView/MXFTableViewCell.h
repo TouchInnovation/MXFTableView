@@ -27,5 +27,6 @@
 @property (strong, nonatomic) UIView *rightPortraitContent;
 
 -(void) configureWithDelegate:(id<MXFTableViewCellDelegate>) delegate IndexPath:(NSIndexPath *) indexPath orientation:(UIDeviceOrientation) orientation;
+-(void) configureForOrientation:(UIDeviceOrientation) orientation;
 
 @end

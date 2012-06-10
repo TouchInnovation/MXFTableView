@@ -46,6 +46,28 @@
                                         0.0,
                                         self.frame.size.width - leftContentSize.width,
                                         leftContentSize.height);
+    
+    // Remove previous content views
+    [_rightLandscapeContent removeFromSuperview]; 
+    [_rightPortraitContent removeFromSuperview]; 
+    
+    // Construct new content view
+    _rightLandscapeContent = [delegate viewForRightLandscapeCellForRowAtIndexPath:indexPath];
+    _rightPortraitContent = [delegate viewForRightPortraitCellForRowAtIndexPath:indexPath];
+    [_rightScrollView addSubview:_rightLandscapeContent];
+    [_rightScrollView addSubview:_rightPortraitContent];
+    
+    [self configureForOrientation:orientation];
+}
+
+- (void)configureForOrientation:(UIDeviceOrientation)orientation {
+    if(UIDeviceOrientationIsLandscape(orientation)) {
+        _rightLandscapeContent.hidden = false;
+        _rightPortraitContent.hidden = true;
+    } else {
+        _rightLandscapeContent.hidden = true;
+        _rightPortraitContent.hidden = false;
+    }
 }
 
 @end

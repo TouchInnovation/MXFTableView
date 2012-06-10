@@ -95,11 +95,15 @@
 }
 
 - (UIView *)viewForRightLandscapeCellForRowAtIndexPath:(NSIndexPath *)indexPath {
-    return nil;
+    UIView *view = [[UIView alloc] initWithFrame:CGRectMake(0.0, 10.0, 20.0, kRowHeight-20.0)];
+    view.backgroundColor = [UIColor blackColor];
+    return view;
 }
 
 - (UIView *)viewForRightPortraitCellForRowAtIndexPath:(NSIndexPath *)indexPath {
-    return nil;    
+    UIView *view = [[UIView alloc] initWithFrame:CGRectMake(0.0, 10.0, 20.0, kRowHeight-20.0)];
+    view.backgroundColor = [UIColor brownColor];
+    return view;
 }
 
 
@@ -111,7 +115,6 @@
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
-    NSLog(@"cellForRowAtIndexPath");
     static NSString *CellIdentifier = @"MXFTableViewCell";
     
     MXFTableViewCell *cell = (MXFTableViewCell*) [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
@@ -143,6 +146,7 @@
 
 - (void)willRotateToInterfaceOrientation:(UIInterfaceOrientation)toInterfaceOrientation duration:(NSTimeInterval)duration {
     
+    // Configure header for the new orientation
     if(UIDeviceOrientationIsLandscape(toInterfaceOrientation)) {
         _mxfTableView.leftLandscapeHeader.hidden = false;
         _mxfTableView.rightLandscapeHeader.hidden = false;
@@ -153,6 +157,19 @@
         _mxfTableView.rightPortraitHeader.hidden = false;
         _mxfTableView.leftLandscapeHeader.hidden = true;
         _mxfTableView.rightLandscapeHeader.hidden = true;
+    }
+}
+
+- (void) willAnimateSecondHalfOfRotationFromInterfaceOrientation:(UIInterfaceOrientation)fromInterfaceOrientation duration:(NSTimeInterval)duration {
+//- (void)didRotateFromInterfaceOrientation:(UIInterfaceOrientation)fromInterfaceOrientation {    
+    // Configure table cell for the new orientation
+    NSArray *visiblePaths = [_mxfTableView.tableView indexPathsForVisibleRows];
+    NSLog(@"Table View: %@", _mxfTableView.tableView);
+    NSLog(@"visiblePaths: %d", [visiblePaths count]);
+    for (NSIndexPath *indexPath in visiblePaths)
+    {
+        MXFTableViewCell *cell = (MXFTableViewCell*) [_mxfTableView.tableView cellForRowAtIndexPath:indexPath];
+        [cell configureForOrientation:[[UIDevice currentDevice] orientation]];
     }
 }
 
