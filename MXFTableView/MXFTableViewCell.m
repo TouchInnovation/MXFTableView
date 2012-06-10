@@ -42,10 +42,9 @@
     
     // Configure right scroll view
     CGSize leftContentSize = _leftContent.frame.size;
-    CGFloat totalWidth = UIDeviceOrientationIsLandscape(orientation) ? 480.0 : 320.0;
     _rightScrollView.frame = CGRectMake(leftContentSize.width,
                                         0.0,
-                                        totalWidth-leftContentSize.width,
+                                        self.frame.size.width - leftContentSize.width,
                                         leftContentSize.height);
 }
 

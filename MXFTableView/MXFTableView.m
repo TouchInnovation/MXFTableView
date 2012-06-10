@@ -43,23 +43,27 @@
         _rightPortraitHeader = [delegate viewForRightPortraitHeader];
         
         // Align right headers according to the left header
+        // Assuming view must always be initialized in portrait mode
+        CGRect screenRect = [[UIScreen mainScreen] bounds];
+        CGFloat screenWidth = screenRect.size.width;
+        CGFloat screenHeight = screenRect.size.height;
+        
         CGRect llhFrame = _leftLandscapeHeader.frame;
         CGFloat llhHeight = llhFrame.size.height;
         CGFloat llhWidth = llhFrame.size.width;
         _rightLandscapeHeader.frame = CGRectMake(llhWidth,
                                                  llhFrame.origin.y,
-                                                 480.0 - llhWidth,
+                                                 screenHeight - llhWidth,
                                                  llhFrame.size.height);
         
         CGRect lphFrame = _leftPortraitHeader.frame;
         CGFloat lphWidth = lphFrame.size.width;
         _rightPortraitHeader.frame = CGRectMake(lphWidth,
                                                  lphFrame.origin.y,
-                                                 320.0 - llhWidth,
+                                                 screenWidth - llhWidth,
                                                  lphFrame.size.height);
         
-        // Assuming view must always init in portrait mode
-        _tableView = [[UITableView alloc] initWithFrame:CGRectMake(0, llhHeight, 320.0, 480.0 - llhHeight)];
+        _tableView = [[UITableView alloc] initWithFrame:CGRectMake(0, llhHeight, screenWidth, screenHeight - llhHeight)];
         _tableView.autoresizingMask = UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleHeight;
         _tableView.dataSource = delegate;
         _tableView.delegate = delegate;
