@@ -11,7 +11,7 @@
 @implementation MXFTableViewCell
 
 @synthesize leftContent = _leftContent;
-@synthesize rightScrollView = _rightScrollView;
+@synthesize rightContentScrollView = _rightScrollView;
 @synthesize rightLandscapeContent = _rightLandscapeContent;
 @synthesize rightPortraitContent = _rightPortraitContent;
 
@@ -78,7 +78,7 @@
         
         _rightScrollView.contentSize = _rightPortraitContent.frame.size;
         
-        self.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
+        self.accessoryType = UITableViewCellAccessoryDetailDisclosureButton;
     }
 }
 

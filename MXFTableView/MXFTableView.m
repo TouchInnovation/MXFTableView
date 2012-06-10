@@ -24,13 +24,14 @@
 
 @synthesize leftLandscapeHeader = _leftLandscapeHeader;
 @synthesize leftPortraitHeader = _leftPortraitHeader;
+@synthesize rightHeaderScrollView = _rightHeaderScrollView;
 @synthesize rightLandscapeHeader = _rightLandscapeHeader;
 @synthesize rightPortraitHeader = _rightPortraitHeader;
 @synthesize tableView = _tableView;
 
 @synthesize delegate = _delegate;
 
-- (id)initWithFrame:(CGRect)frame delegate:(id<MXFTableViewDelegate>)delegate
+- (id)initWithFrame:(CGRect)frame delegate:(id<MXFTableViewDelegate, UIScrollViewDelegate>)delegate
 {
     self = [super initWithFrame:frame];
     if (self) {
@@ -51,17 +52,17 @@
         CGRect llhFrame = _leftLandscapeHeader.frame;
         CGFloat llhHeight = llhFrame.size.height;
         CGFloat llhWidth = llhFrame.size.width;
-        _rightLandscapeHeader.frame = CGRectMake(llhWidth,
-                                                 llhFrame.origin.y,
-                                                 screenHeight - llhWidth,
-                                                 llhFrame.size.height);
         
-        CGRect lphFrame = _leftPortraitHeader.frame;
-        CGFloat lphWidth = lphFrame.size.width;
-        _rightPortraitHeader.frame = CGRectMake(lphWidth,
-                                                 lphFrame.origin.y,
-                                                 screenWidth - llhWidth,
-                                                 lphFrame.size.height);
+        _rightHeaderScrollView = [[UIScrollView alloc] initWithFrame:CGRectMake(llhWidth,
+                                              llhFrame.origin.y,
+                                              screenHeight - llhWidth,
+                                              llhFrame.size.height)];
+        _rightHeaderScrollView.showsHorizontalScrollIndicator = false;
+        _rightHeaderScrollView.showsVerticalScrollIndicator = false;
+        _rightHeaderScrollView.bounces = false; // Bouncing is NOT supported!!
+        _rightHeaderScrollView.delegate = delegate;
+        [_rightHeaderScrollView addSubview:_rightLandscapeHeader]; 
+        [_rightHeaderScrollView addSubview:_rightPortraitHeader];
         
         _tableView = [[UITableView alloc] initWithFrame:CGRectMake(0, llhHeight, screenWidth, screenHeight - llhHeight)];
         _tableView.autoresizingMask = UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleHeight;
@@ -70,8 +71,7 @@
         
         [self addSubview:_leftLandscapeHeader];
         [self addSubview:_leftPortraitHeader];
-        [self addSubview:_rightLandscapeHeader];
-        [self addSubview:_rightPortraitHeader];
+        [self addSubview:_rightHeaderScrollView];
         [self addSubview:_tableView];
     }
     return self;

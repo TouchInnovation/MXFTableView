@@ -22,7 +22,7 @@
 @interface MXFTableViewCell : UITableViewCell
 
 @property (strong, nonatomic) UIView *leftContent;
-@property (strong, nonatomic) UIScrollView *rightScrollView;
+@property (strong, nonatomic) UIScrollView *rightContentScrollView;
 @property (strong, nonatomic) UIView *rightLandscapeContent;
 @property (strong, nonatomic) UIView *rightPortraitContent;
 

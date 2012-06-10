@@ -35,11 +35,12 @@
 
 @property (strong, nonatomic) UIView *leftLandscapeHeader;
 @property (strong, nonatomic) UIView *leftPortraitHeader;
+@property (strong, nonatomic) UIScrollView *rightHeaderScrollView;
 @property (strong, nonatomic) UIView *rightLandscapeHeader;
 @property (strong, nonatomic) UIView *rightPortraitHeader;
 @property (strong, nonatomic) UITableView *tableView;
 
-@property (assign, nonatomic) id<MXFTableViewDelegate> delegate;
+@property (assign, nonatomic) id<MXFTableViewDelegate, UIScrollViewDelegate> delegate;
 
 
 - (id)initWithFrame:(CGRect)frame delegate:(id<MXFTableViewDelegate>)delegate;

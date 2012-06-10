@@ -60,31 +60,29 @@
 # pragma mark - MXFTableViewDelegate methods
 
 -(UIView*) viewForLeftLandscapeHeader {
-    UIView *view = [[UIView alloc] initWithFrame:CGRectMake(0.0, 0.0, 20.0, 20.0)];
+    UIView *view = [[UIView alloc] initWithFrame:CGRectMake(0.0, 0.0, 20.0, kDemoRowHeight)];
     view.backgroundColor = [UIColor blueColor];
     return view;
 }
 
 -(UIView*) viewForLeftPortraitHeader {
-    UIView *view = [[UIView alloc] initWithFrame:CGRectMake(0.0, 0.0, 20.0, 20.0)];
+    UIView *view = [[UIView alloc] initWithFrame:CGRectMake(0.0, 0.0, 20.0, kDemoRowHeight)];
     view.backgroundColor = [UIColor greenColor];
     return view;
 }
 
 -(UIView*) viewForRightLandscapeHeader {
-    UIView *view = [[UIView alloc] init];
-    view.backgroundColor = [UIColor purpleColor];
-    UILabel *label = [[UILabel alloc] init];
-    label.text = @"RL Header";
+    UIView *view = [[UIView alloc] initWithFrame:CGRectMake(0.0, 0.0, 800.0, kDemoRowHeight)];
+    UILabel *label = [[UILabel alloc] initWithFrame:CGRectMake(0.0, 0.0, 800.0, kDemoRowHeight)];
+    label.text = @"LANDSCAPE HEADER LANDSCAPE HEADER LANDSCAPE HEADER LANDSCAPE HEADER LANDSCAPE HEADER LANDSCAPE HEADER LANDSCAPE HEADER LANDSCAPE HEADER LANDSCAPE HEADER ";
     [view addSubview:label];
-    return view;    
+    return view;
 }
 
 -(UIView*) viewForRightPortraitHeader {
-    UIView *view = [[UIView alloc] init];
-    view.backgroundColor = [UIColor redColor];
-    UILabel *label = [[UILabel alloc] init];
-    label.text = @"RP Header";
+    UIView *view = [[UIView alloc] initWithFrame:CGRectMake(0.0, 0.0, 300.0, kDemoRowHeight)];
+    UILabel *label = [[UILabel alloc] initWithFrame:CGRectMake(0.0, 0.0, 300.0, kDemoRowHeight)];
+    label.text = @"PORTRAIT HEADER";
     [view addSubview:label];
     return view;
 }
@@ -98,14 +96,16 @@
 - (UIView *)viewForRightLandscapeCellForRowAtIndexPath:(NSIndexPath *)indexPath {
     UIView *view = [[UIView alloc] initWithFrame:CGRectMake(0.0, 0.0, 800.0, kDemoRowHeight)];
     UILabel *label = [[UILabel alloc] initWithFrame:CGRectMake(0.0, 0.0, 800.0, kDemoRowHeight)];
-    label.text = @"This is a very long long text This is a very long long text This is a very long long text This is a very long long text";
+    label.text = @"LANDSCAPE cell LANDSCAPE cell LANDSCAPE cell LANDSCAPE cell LANDSCAPE cell LANDSCAPE cell LANDSCAPE cell LANDSCAPE cell LANDSCAPE cell LANDSCAPE cell ";
     [view addSubview:label];
     return view;
 }
 
 - (UIView *)viewForRightPortraitCellForRowAtIndexPath:(NSIndexPath *)indexPath {
-    UIView *view = [[UIView alloc] initWithFrame:CGRectMake(0.0, 0.0, 20.0, kDemoRowHeight)];
-    view.backgroundColor = [UIColor brownColor];
+    UIView *view = [[UIView alloc] initWithFrame:CGRectMake(0.0, 0.0, 300.0, kDemoRowHeight)];
+    UILabel *label = [[UILabel alloc] initWithFrame:CGRectMake(0.0, 0.0, 300.0, kDemoRowHeight)];
+    label.text = @"PORTRAIT cell";
+    [view addSubview:label];
     return view;
 }
 
@@ -124,7 +124,7 @@
     
     if(cell == nil) {
         cell = [[MXFTableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:CellIdentifier];
-        cell.rightScrollView.delegate = self;
+        cell.rightContentScrollView.delegate = self;
     }
 //    cell.textLabel.text = [NSString stringWithFormat:@"Row: %d", indexPath.row];
     UIDeviceOrientation orientation = [[UIDevice currentDevice] orientation];
@@ -156,11 +156,14 @@
         _mxfTableView.rightLandscapeHeader.hidden = false;
         _mxfTableView.leftPortraitHeader.hidden = true;
         _mxfTableView.rightPortraitHeader.hidden = true;
+        
+        _mxfTableView.rightHeaderScrollView.contentSize = _mxfTableView.rightLandscapeHeader.frame.size;
     } else {
         _mxfTableView.leftPortraitHeader.hidden = false;
         _mxfTableView.rightPortraitHeader.hidden = false;
         _mxfTableView.leftLandscapeHeader.hidden = true;
         _mxfTableView.rightLandscapeHeader.hidden = true;
+        _mxfTableView.rightHeaderScrollView.contentSize = _mxfTableView.rightPortraitHeader.frame.size;
     }
 }
 
@@ -183,11 +186,22 @@
     CGPoint offset = [currentScrollView contentOffset];
 
     if(offset.y == 0) { // Lock vertical scrolling
+        
+        if(currentScrollView == _mxfTableView.rightHeaderScrollView) {
+//            NSLog(@"Skip as same header view");
+        } else {            
+            // Adjust header offset
+            [_mxfTableView.rightHeaderScrollView setContentOffset:offset];
+        }
+        
+        // Adjust content cell offset
         NSArray *visiblePaths = [_mxfTableView.tableView indexPathsForVisibleRows];
         for (NSIndexPath *indexPath in visiblePaths) {
             MXFTableViewCell *cell = (MXFTableViewCell*) [_mxfTableView.tableView cellForRowAtIndexPath:indexPath];
-            UIScrollView *scrollView = cell.rightScrollView;
-            if(scrollView != currentScrollView) {
+            UIScrollView *scrollView = cell.rightContentScrollView;
+            if(scrollView == currentScrollView) {
+//                NSLog(@"Skip as same scrollview");
+            } else {
                 [scrollView setContentOffset:offset animated:false];
             }
         }
