@@ -19,6 +19,7 @@
 //
 
 #import "MXFTableViewController.h"
+#import "MXFTableViewCell.h"
 
 @interface MXFTableViewController ()
 
@@ -91,6 +92,47 @@
     [view addSubview:label];
     return view;
 }
+
+- (UIView *)tableView:(UITableView *)tableView viewForLeftCellForRowAtIndexPath:(NSIndexPath *)indexPath {
+    return nil;
+}
+
+- (UIView *)tableView:(UITableView *)tableView viewForRightLandscapeCellForRowAtIndexPath:(NSIndexPath *)indexPath {
+    return nil;
+}
+
+- (UIView *)tableView:(UITableView *)tableView viewForRightPortraitCellForRowAtIndexPath:(NSIndexPath *)indexPath {
+    return nil;    
+}
+
+
+# pragma mark - UITableViewDataSource Methods:
+
+- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
+    // To be implemented by subclass
+    return 10;
+}
+
+- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
+    NSLog(@"cellForRowAtIndexPath");
+    static NSString *CellIdentifier = @"MXFTableViewCell";
+    
+    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
+    
+    if(cell == nil) {
+        cell = [[MXFTableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:CellIdentifier];
+    }
+    cell.textLabel.text = [NSString stringWithFormat:@"Row: %d", indexPath.row];
+    
+    return cell;
+}
+
+
+# pragma mark - UITableViewDelegate Methods:
+
+//- (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
+//    return 10.0;
+//}
 
 
 # pragma mark - Orientation related methods

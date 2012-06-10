@@ -61,6 +61,8 @@
         // Assuming view must always init in portrait mode
         _tableView = [[UITableView alloc] initWithFrame:CGRectMake(0, llhHeight, 320.0, 480.0 - llhHeight)];
         _tableView.autoresizingMask = UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleHeight;
+        _tableView.dataSource = delegate;
+        _tableView.delegate = delegate;
         
         [self addSubview:_leftLandscapeHeader];
         [self addSubview:_leftPortraitHeader];
